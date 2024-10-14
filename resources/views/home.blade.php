@@ -5,5 +5,5 @@
 @section('page-header', 'Home')
 
 @section('content')
-    <h1>{{ $greeting }} {{ $name }}!</h1>
+    <h1>Homepage!</h1>
 @endsection

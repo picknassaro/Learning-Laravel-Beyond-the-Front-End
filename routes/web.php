@@ -4,16 +4,30 @@ use Illuminate\Support\Facades\Route;
 
 // Return a view
 Route::get('/', function () {
-    return view('home', [
-        // Pass data to view from route
-        'greeting' => 'Hello',
-        'name' => 'World',
-    ]);
+    return view('home');
 })->name('home');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+Route::get('/jobs', function () {
+    return view('jobs', [
+        // Pass data to view from route
+        'jobs' => [
+            [
+                'title' => 'Web Developer',
+                'description' => 'We are looking for a web developer',
+                'location' => 'Remote',
+                'type' => 'Full-time',
+                'salary' => '$150,000.00 per year'
+            ],
+            [
+                'title' => 'Copywriter',
+                'description' => 'We are looking for a copywriter',
+                'location' => 'Remote',
+                'type' => 'Full-time',
+                'salary' => '$150,000.00 per year'
+            ]
+        ]
+    ]);
+})->name('jobs');
 
 Route::get('/contact', function () {
     return view('contact');
