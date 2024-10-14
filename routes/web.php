@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 
 // Return a view
 Route::get('/', function () {
-    return view('home');
+    return view('home', [
+        // Pass data to view from route
+        'greeting' => 'Hello',
+        'name' => 'World',
+    ]);
 })->name('home');
 
 Route::get('/about', function () {
