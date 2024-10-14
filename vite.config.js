@@ -5,7 +5,13 @@ export default defineConfig({
     plugins: [
         laravel({
             input: ["resources/css/app.css", "resources/js/app.js"],
-            refresh: ["resources/css/*", "resources/js/*", "resources/views/*", "resources/views/*/*", "routes/*"],
+            refresh: [
+                "resources/css/*",
+                "resources/js/*",
+                "resources/views/*",
+                "resources/views/*/*",
+                "routes/*",
+            ],
         }),
     ],
     server: {
