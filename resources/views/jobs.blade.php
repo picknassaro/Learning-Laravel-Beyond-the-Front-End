@@ -1,15 +1,15 @@
 @extends('layouts.default')
 
-@section('title', 'Home')
+@section('title', 'Jobs')
 
-@section('page-header', 'Home')
+@section('page-header', 'Jobs')
 
 @section('content')
     <h1 class="mb-4">Available Jobs:</h1>
     <ul>
         @foreach ($jobs as $job)
             <li class="list-disc mb-4">
-                <strong>Title:</strong> {{ $job['title'] }}
+                <strong>Title:</strong> <a href="job/{{ $job['id'] }}" class="underline">{{ $job['title'] }}</a>
                 <br />
                 <strong>Description:</strong> {{ $job['description'] }}
                 <br />
