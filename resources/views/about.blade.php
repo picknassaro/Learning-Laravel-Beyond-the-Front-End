@@ -1,21 +1,7 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.default')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
-    @vite('/resources/css/app.css', '/resources/js/app.js')
-</head>
+@section('title', 'About')
 
-<body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-    </nav>
-
+@section('content')
     <h1>About Page!</h1>
-</body>
-
-</html>
+@endsection
