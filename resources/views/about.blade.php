@@ -15,7 +15,7 @@
         <a href="/contact">Contact</a>
     </nav>
 
-    <h1>Hello World!</h1>
+    <h1>About Page!</h1>
 </body>
 
 </html>
