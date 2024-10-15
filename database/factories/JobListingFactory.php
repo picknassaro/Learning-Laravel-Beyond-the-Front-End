@@ -18,7 +18,7 @@ class JobListingFactory extends Factory
     {
         return [
             'title' => fake()->jobTitle(),
-            'employer_id' => \App\Models\Employer::factory(),
+            'employer_id' => \App\Models\Employer::inRandomOrder()->first()->id,
             'description' => fake()->paragraph(),
             'location' => fake()->randomElement([fake()->city(), 'Remote']),
             'type' => fake()->randomElement(['Full-time', 'Part-time']),
