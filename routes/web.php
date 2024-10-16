@@ -24,7 +24,15 @@ Route::get('jobs/{id}', function ($id) {
 })->name('showSingleJob');
 
 Route::post('/jobs', function () {
-    dd("hi!");
+    JobListing::create([
+        'title' => request('title'),
+        'description' => request('description'),
+        'location' => request('location'),
+        'type' => request('type'),
+        'salary' => request('salary'),
+        'employer_id' => rand(1, 100) // Randomizing because we don't have a employer auth system yet
+    ]);
+    return redirect()->route('showAllJobs');
 })->name('storeJob');
 
 Route::get('/contact', function () {
