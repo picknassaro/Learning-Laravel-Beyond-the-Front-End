@@ -5,7 +5,7 @@
 @section('page-header', 'Jobs')
 
 @section('content')
-    <h1 class="mb-4">Available Jobs:</h1>
+    <h2 class="mb-4">Available Jobs:</h2>
     <ul>
         @foreach ($jobs as $job)
             <li class="list-disc mb-4">

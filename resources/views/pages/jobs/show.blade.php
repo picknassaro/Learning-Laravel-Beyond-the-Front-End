@@ -10,7 +10,7 @@
 @section('page-header', $jobTitle)
 
 @section('content')
-    <h1 class="mb-4 font-bold text-lg"></h1>
+    <h2 class="mb-4 font-bold text-lg"></h2>
     <ul>
         <li class="mb-4">
             <strong>Company:</strong> {{ $employer }}
