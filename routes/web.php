@@ -8,7 +8,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/jobs', function () {
-    $jobs = JobListing::with('employer')->simplePaginate(10);
+    $jobs = JobListing::with('employer')->latest()->simplePaginate(10);
     return view('pages/jobs/index', [
         'jobs' => $jobs
     ]);
