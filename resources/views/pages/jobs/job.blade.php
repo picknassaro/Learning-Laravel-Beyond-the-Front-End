@@ -1,13 +1,20 @@
 @extends('layouts.default')
 
-@section('title', 'Home')
+@php
+    $jobTitle = $job['title'];
+    $employer = $job->employer->name;
+    $pageTitle = $jobTitle . ' at ' . $employer;
+@endphp
+@section('title', $pageTitle)
 
-@section('page-header', 'Home')
+@section('page-header', $jobTitle)
 
 @section('content')
-    <h1 class="mb-4 font-bold text-lg">{{ $job['title'] }}</h1>
+    <h1 class="mb-4 font-bold text-lg"></h1>
     <ul>
         <li class="mb-4">
+            <strong>Company:</strong> {{ $employer }}
+            <br />
             <strong>Description:</strong> {{ $job['description'] }}
             <br />
             <strong>Location:</strong> {{ $job['location'] }}

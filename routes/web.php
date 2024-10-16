@@ -4,25 +4,26 @@ use Illuminate\Support\Facades\Route;
 use App\Models\JobListing;
 
 Route::get('/', function () {
-    return view('home');
+    return view('pages/home');
 })->name('home');
 
 Route::get('/jobs', function () {
     $jobs = JobListing::with('employer')->simplePaginate(10);
-
-    return view('jobs', [
+    return view('pages/jobs/index', [
         'jobs' => $jobs
     ]);
 })->name('jobs');
 
-Route::get('job/{id}', function ($id) {
-    $job = JobListing::find($id);
+Route::get('/jobs/create', function () {
+})->name('createJob');
 
-    return view('job', ['job' => $job]);
+Route::get('job/{id}', function ($id) {
+    $job = JobListing::with('employer')->find($id);
+    return view('pages/jobs/job', ['job' => $job]);
 })->name('job');
 
 Route::get('/contact', function () {
-    return view('contact');
+    return view('pages/contact');
 })->name('contact');
 
 Route::get('/api', function () {
