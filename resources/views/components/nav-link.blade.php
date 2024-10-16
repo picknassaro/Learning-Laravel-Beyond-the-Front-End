@@ -1,3 +1,7 @@
+@php
+    // Take in route name from nav component and compare it to the URL. If they match, isActive is true. If isActive is true, the link is styled differently and aria-current is set to page.
+@endphp
+
 @props(['routeName'])
 
 @php

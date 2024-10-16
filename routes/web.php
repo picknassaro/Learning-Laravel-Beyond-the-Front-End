@@ -12,15 +12,16 @@ Route::get('/jobs', function () {
     return view('pages/jobs/index', [
         'jobs' => $jobs
     ]);
-})->name('jobs');
+})->name('showAllJobs');
 
 Route::get('/jobs/create', function () {
+    return view('pages/jobs/create');
 })->name('createJob');
 
-Route::get('job/{id}', function ($id) {
+Route::get('jobs/{id}', function ($id) {
     $job = JobListing::with('employer')->find($id);
-    return view('pages/jobs/job', ['job' => $job]);
-})->name('job');
+    return view('pages/jobs/show', ['job' => $job]);
+})->name('showSingleJob');
 
 Route::get('/contact', function () {
     return view('pages/contact');

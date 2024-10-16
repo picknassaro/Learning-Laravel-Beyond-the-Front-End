@@ -9,7 +9,7 @@
     <ul>
         @foreach ($jobs as $job)
             <li class="list-disc mb-4">
-                <strong>Title:</strong> <a href="job/{{ $job['id'] }}" class="underline">{{ $job['title'] }}</a>
+                <strong>Title:</strong> <a href="jobs/{{ $job['id'] }}" class="underline">{{ $job['title'] }}</a>
                 <br />
                 <strong>Company:</strong> {{ $job->employer->name }}
                 <br />
