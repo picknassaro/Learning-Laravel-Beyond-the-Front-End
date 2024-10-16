@@ -3,13 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\JobListing;
 
-// Return a view
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
 Route::get('/jobs', function () {
-    // Invoke Job model to retrieve all jobs with the employer relationship
     $jobs = JobListing::with('employer')->get();
 
     return view('jobs', [
@@ -18,10 +16,8 @@ Route::get('/jobs', function () {
 })->name('jobs');
 
 Route::get('job/{id}', function ($id) {
-    // Create a variable equal to the result of the find method of the Job model with an argument of $id
     $job = JobListing::find($id);
 
-    // Return the job view with the job variable passed in as an argument. Note that 'job' is the key and $job is the value. The key will be retrieved in the view as a variable, so if you pass in ['foo' => $job], you would retrieve the job variable in the view as $foo.
     return view('job', ['job' => $job]);
 })->name('job');
 
