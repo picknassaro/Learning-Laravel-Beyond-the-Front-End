@@ -23,6 +23,10 @@ Route::get('jobs/{id}', function ($id) {
     return view('pages/jobs/show', ['job' => $job]);
 })->name('showSingleJob');
 
+Route::post('/jobs', function () {
+    dd("hi!");
+})->name('storeJob');
+
 Route::get('/contact', function () {
     return view('pages/contact');
 })->name('contact');
