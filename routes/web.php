@@ -24,6 +24,13 @@ Route::get('/jobs/{id}', function ($id) {
 })->name('showSingleJob');
 
 Route::post('/jobs', function () {
+    request()->validate([
+        'title' => ['required'],
+        'description' => ['required'],
+        'location' => ['required'],
+        'type' => ['required'],
+        'salary' => ['required', 'regex:/^\$((\d{1,3})(,\d{3})*|\d+)(\.\d{2})?$/']
+    ]);
     JobListing::create([
         'title' => request('title'),
         'description' => request('description'),

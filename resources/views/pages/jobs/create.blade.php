@@ -34,6 +34,17 @@
                 <input class="py-2 px-4 rounded h-12 focus:outline-blue-500" type="text" name="salary" placeholder=""  />
             </div>
         </div>
-        <x-primary-button type="submit">Submit</x-primary-button>
+        <div class="flex justify-between">
+            <x-primary-button type="submit">Submit</x-primary-button>
+            @if($errors->any())
+                <div class="text-red-500">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li class="text-sm">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
     </form>
 @endsection
