@@ -11,6 +11,8 @@
             <li class="list-disc mb-4">
                 <strong>Title:</strong> <a href="job/{{ $job['id'] }}" class="underline">{{ $job['title'] }}</a>
                 <br />
+                <strong>Company:</strong> {{ $job->employer->name }}
+                <br />
                 <strong>Description:</strong> {{ $job['description'] }}
                 <br />
                 <strong>Location:</strong> {{ $job['location'] }}
