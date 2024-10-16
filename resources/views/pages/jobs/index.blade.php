@@ -7,12 +7,12 @@
 @section('content')
     <div class="flex justify-between">
         <h2 class="mb-4">Available Jobs:</h2>
-        <a href="jobs/create" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Post a Job</a>
+        <x-primary-button type="link" href="/jobs/create">Post a Job</x-primary-button>
     </div>
     <ul>
         @foreach ($jobs as $job)
             <li class="list-disc mb-4">
-                <strong>Title:</strong> <a href="jobs/{{ $job['id'] }}" class="underline">{{ $job['title'] }}</a>
+                <strong>Title:</strong> <a href="/jobs/{{ $job['id'] }}" class="underline">{{ $job['title'] }}</a>
                 <br />
                 <strong>Company:</strong> {{ $job->employer->name }}
                 <br />
