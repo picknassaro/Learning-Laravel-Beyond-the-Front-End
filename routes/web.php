@@ -9,9 +9,11 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/jobs', function () {
+    // Invoke Job model to retrieve all jobs with the employer relationship
+    $jobs = JobListing::with('employer')->get();
+
     return view('jobs', [
-        // Invoke the all method of the Job model to retrieve all jobs
-        'jobs' => JobListing::all()
+        'jobs' => $jobs
     ]);
 })->name('jobs');
 
