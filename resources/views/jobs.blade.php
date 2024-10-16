@@ -23,4 +23,5 @@
             </li>
         @endforeach
     </ul>
+    {{ $jobs->links() }}
 @endsection
