@@ -28,8 +28,8 @@
             <div class="grow flex flex-col mr-4">
                 <label class="block mb-1" for="type">Type</label>
                 <select class="py-2 px-4 rounded h-12 focus:outline-blue-500 bg-white" name="type" placeholder="">
-                    <option value="full-time">Full Time</option>
-                    <option value="part-time">Part Time</option>
+                    <option value="Full-time">Full Time</option>
+                    <option value="Part-time">Part Time</option>
                 </select>
             </div>
             <div class="grow flex flex-col">
