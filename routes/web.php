@@ -47,7 +47,7 @@ Route::get('/jobs/{id}', function ($id) {
 // Edit single Job
 Route::get('/jobs/{id}/edit', function ($id) {
     $job = JobListing::find($id);
-    return view('/pages/jobs/edit');
+    return view('/pages/jobs/edit', ['job' => $job]);
 })->name('editJob');
 
 // Store a Job
@@ -69,6 +69,31 @@ Route::post('/jobs', function () {
     ]);
     return redirect()->route('showAllJobs');
 })->name('storeJob');
+
+// Edit a Job
+Route::patch('/jobs/{id}', function ($id) {
+    request()->validate([
+        'title' => ['required'],
+        'description' => ['required'],
+        'location' => ['required'],
+        'type' => ['required'],
+        'salary' => ['required', 'regex:/^\$((\d{1,3})(,\d{3})*|\d+)(\.\d{2})?$/']
+    ]);
+    JobListing::findOrFail($id)->update([
+        'title' => request('title'),
+        'description' => request('description'),
+        'location' => request('location'),
+        'type' => request('type'),
+        'salary' => preg_match('/\.\d{2}$/', request('salary')) ? request('salary') : request('salary') . '.00',
+    ]);
+    return redirect()->route('showSingleJob', ['id' => $id]);
+})->name('editSingleJob');
+
+// Delete a Job
+Route::delete('/jobs/{id}', function ($id) {
+    JobListing::findOrFail($id)->delete();
+    return redirect()->route('showAllJobs');
+})->name('deleteSingleJob');
 
 
 

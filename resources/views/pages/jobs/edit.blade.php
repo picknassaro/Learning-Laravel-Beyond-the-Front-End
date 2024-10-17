@@ -42,16 +42,22 @@
             </div>
         </div>
         <div class="flex justify-between">
-            <x-primary-button type="submit">Submit</x-primary-button>
-            @if ($errors->any())
-                <div class="text-red-500">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li class="text-sm">{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            <x-primary-button type="submit" class="mr-4">Submit</x-primary-button>
+            <a href="/jobs/{{ $job->id }}" class="text-black font-bold py-2 px-4 self-start mr-4">Cancel</a>
+            <button type="submit" class="text-red-500 font-bold mr-4" form="delete">Delete</button>
         </div>
     </form>
+    <form class="mb-4" method="POST" action="/jobs/{{ $job->id }}" id="delete" hidden>
+        @csrf
+        @method('DELETE')
+    </form>
+    @if ($errors->any())
+        <div class="text-red-500">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li class="text-sm">{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endsection
