@@ -4,7 +4,7 @@
 
 @section('page-header')
     <div class="flex justify-between">
-        <x-page-header>Jobs:</x-page-header>
+        <x-page-header>Jobs</x-page-header>
         <x-primary-button type="link" href="/jobs/create">Post a Job</x-primary-button>
     </div>
 @endsection

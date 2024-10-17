@@ -7,7 +7,7 @@ use App\Models\JobListing;
 
 // Home routes
 Route::get('/', function () {
-    return view('/pages/home');
+    return view('pages.home');
 })->name('home');
 
 Route::get('/home', function () {
@@ -18,7 +18,7 @@ Route::get('/home', function () {
 
 // Contact routes
 Route::get('/contact', function () {
-    return view('/pages/contact');
+    return view('pages.contact');
 })->name('contact');
 
 
@@ -28,26 +28,26 @@ Route::get('/contact', function () {
 // with('employer') is not for allowing us to show the employers. That will work regardless. It is an eager loading method that prevent an N+1 query problem. It will load all the employers in one query instead of loading them one by one.
 Route::get('/jobs', function () {
     $jobs = JobListing::with('employer')->latest()->simplePaginate(10);
-    return view('/pages/jobs/index', [
+    return view('pages.jobs.index', [
         'jobs' => $jobs
     ]);
 })->name('showAllJobs');
 
 // Post a Job
 Route::get('/jobs/create', function () {
-    return view('/pages/jobs/create');
+    return view('pages.jobs.create');
 })->name('createJob');
 
 // View single Job
 Route::get('/jobs/{id}', function ($id) {
     $job = JobListing::find($id);
-    return view('/pages/jobs/show', ['job' => $job]);
+    return view('pages.jobs.show', ['job' => $job]);
 })->name('showSingleJob');
 
 // Edit single Job
 Route::get('/jobs/{id}/edit', function ($id) {
     $job = JobListing::find($id);
-    return view('/pages/jobs/edit', ['job' => $job]);
+    return view('pages.jobs.edit', ['job' => $job]);
 })->name('editJob');
 
 // Store a Job
