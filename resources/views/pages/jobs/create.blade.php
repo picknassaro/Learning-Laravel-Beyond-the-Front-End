@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="flex justify-between">
-            <x-primary-button type="submit">Submit</x-primary-button>
+            <x-primary-button type="submit" class="mr-4">Submit</x-primary-button>
             @if ($errors->any())
                 <div class="text-red-500">
                     <ul>
