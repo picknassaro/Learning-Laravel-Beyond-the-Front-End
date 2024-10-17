@@ -36,7 +36,7 @@ Route::post('/jobs', function () {
         'description' => request('description'),
         'location' => request('location'),
         'type' => request('type'),
-        'salary' => request('salary'),
+        'salary' => preg_match('/\.\d{2}$/', request('salary')) ? request('salary') : request('salary') . '.00',
         'employer_id' => rand(1, 100) // Randomizing because we don't have a employer auth system yet
     ]);
     return redirect()->route('showAllJobs');
