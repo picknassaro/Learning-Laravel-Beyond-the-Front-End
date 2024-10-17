@@ -11,7 +11,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/home', function () {
-    return redirect('/');
+    return redirect()->route('home');
 });
 
 
