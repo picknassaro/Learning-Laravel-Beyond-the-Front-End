@@ -44,6 +44,13 @@ Route::get('/jobs/{id}', function ($id) {
     return view('/pages/jobs/show', ['job' => $job]);
 })->name('showSingleJob');
 
+// Edit single Job
+Route::get('/jobs/{id}/edit', function ($id) {
+    $job = JobListing::find($id);
+    return view('/pages/jobs/edit');
+})->name('editJob');
+
+// Store a Job
 Route::post('/jobs', function () {
     request()->validate([
         'title' => ['required'],
@@ -69,7 +76,3 @@ Route::post('/jobs', function () {
 Route::get('/api', function () {
     return ["foo" => "bar"];
 })->name('api');
-
-Route::get('/home', function () {
-    return redirect('/');
-});
