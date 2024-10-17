@@ -7,8 +7,9 @@
 @endsection
 
 @section('content')
-    <form class="flex flex-wrap" method="POST" action="/jobs">
+    <form class="flex flex-wrap mb-4" method="POST" action="/jobs/{{ $job->id }}">
         @csrf
+        @method('PATCH')
         <div class="w-full mb-4">
             <label class="w-full block mb-1" for="title">Title</label>
             <input class="py-2 px-4 rounded w-full h-12 focus:outline-blue-500" type="text" name="title"
@@ -17,7 +18,7 @@
         <div class="w-full mb-4">
             <label class="w-full block mb-1" for="description">Description</label>
             <div class="rounded bg-white p-1 focus-within:outline outline-blue-500">
-                <textarea class="w-full rounded h-48 p-3 focus:outline-none" name="description">{{ $job->description }}</textarea>
+                <textarea class="w-full rounded h-48 p-3 focus:outline-none" name="description" placeholder="{{ $job->description }}"></textarea>
             </div>
         </div>
         <div class="w-full flex mb-4">
