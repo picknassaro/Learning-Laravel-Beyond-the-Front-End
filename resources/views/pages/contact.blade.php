@@ -2,7 +2,9 @@
 
 @section('title', 'Contact')
 
-@section('page-header', 'Contact Us')
+@section('page-header')
+    <x-page-header>Contact Us</x-page-header>
+@endsection
 
 @section('content')
     <h2>Contact Page!</h2>

@@ -7,10 +7,14 @@
 @endphp
 @section('title', $pageTitle)
 
-@section('page-header', $jobTitle)
+@section('page-header')
+    <div class="flex justify-between">
+        <x-page-header>{{ $jobTitle }}</x-page-header>
+        <x-primary-button type="link" href="/jobs/edit">Edit Job</x-primary-button>
+    </div>
+@endsection
 
 @section('content')
-    <h2 class="mb-4 font-bold text-lg"></h2>
     <ul>
         <li class="mb-4">
             <strong>Company:</strong> {{ $employer }}

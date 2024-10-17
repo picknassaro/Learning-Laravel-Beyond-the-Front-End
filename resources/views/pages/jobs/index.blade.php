@@ -2,13 +2,14 @@
 
 @section('title', 'Jobs')
 
-@section('page-header', 'Jobs')
-
-@section('content')
+@section('page-header')
     <div class="flex justify-between">
-        <h2 class="mb-4">Available Jobs:</h2>
+        <x-page-header>Jobs:</x-page-header>
         <x-primary-button type="link" href="/jobs/create">Post a Job</x-primary-button>
     </div>
+@endsection
+
+@section('content')
     <ul>
         @foreach ($jobs as $job)
             <li class="list-disc mb-4">

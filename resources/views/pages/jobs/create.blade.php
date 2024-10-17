@@ -2,7 +2,9 @@
 
 @section('title', 'Post a New Job')
 
-@section('page-header', 'Post a New Job')
+@section('page-header')
+    <x-page-header>Post a New Job</x-page-header>
+@endsection
 
 @section('content')
     <form class="flex flex-wrap" method="POST" action="/jobs">
