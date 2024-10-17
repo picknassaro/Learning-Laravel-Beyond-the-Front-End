@@ -10,7 +10,7 @@
 @section('page-header')
     <div class="flex justify-between">
         <x-page-header>{{ $jobTitle }}</x-page-header>
-        <x-primary-button type="link" href="/jobs/edit">Edit Job</x-primary-button>
+        <x-primary-button type="link" href="/jobs/{{ $job->id }}/edit">Edit Job</x-primary-button>
     </div>
 @endsection
 
