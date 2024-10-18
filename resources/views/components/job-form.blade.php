@@ -2,58 +2,44 @@
 
 <form class="mb-4 flex flex-wrap"
       method="POST"
-    action="{{ $type == 'post' ? route('showAllJobs') : ($job ? route('showSingleJob', ['job' => $job->id]) : '') }}">
+      action="{{ $type == 'post' ? route('showAllJobs') : ($job ? route('showSingleJob', ['job' => $job->id]) : '') }}">
     @csrf
     @if ($type == 'patch')
         @method('PATCH')
     @endif
     <div class="mb-4 w-full">
-        <label class="mb-1 block w-full"
-               for="title">
+        <x-form-label for="title">
             Title
-        </label>
-        <input class="h-12 w-full rounded px-4 py-2 focus:outline-blue-500"
-               type="text"
-               name="title"
-               value="{{ old('title', $job->title ?? '') }}" />
+        </x-form-label>
+        <x-form-input full="true"
+                      type="text"
+                      name="title"
+                      :resource="$job" />
     </div>
     <div class="mb-4 w-full">
-        <label class="mb-1 block w-full"
-               for="description">Description</label>
-        <div class="rounded bg-white p-1 outline-blue-500 focus-within:outline">
-            <textarea class="h-48 w-full rounded p-3 focus:outline-none"
-                      name="description">{{ old('description', $job->description ?? '') }}</textarea>
-        </div>
+        <x-form-label for="description">Description</x-form-label>
+        <x-form-textarea full="true"
+                         name="description"
+                         :resource="$job" />
     </div>
     <div class="mb-4 flex w-full">
         <div class="mr-4 flex grow flex-col">
-            <label class="mb-1 block"
-                   for="location">Location</label>
-            <input class="h-12 rounded px-4 py-2 focus:outline-blue-500"
-                   type="text"
-                   name="location"
-                   value="{{ old('location', $job->location ?? '') }}" />
+            <x-form-label for="location">Location</x-form-label>
+            <x-form-input type="text"
+                          name="location"
+                          :resource="$job" />
         </div>
         <div class="mr-4 flex grow flex-col">
-            <label class="mb-1 block"
-                   for="type">Type</label>
-            <select class="h-12 rounded bg-white px-4 py-2 focus:outline-blue-500"
-                    name="type">
-                <option value="Full-time"
-                        {{ old('type', $job->type ?? '') == 'Full-time' ? 'selected' : '' }}>Full Time
-                </option>
-                <option value="Part-time"
-                        {{ old('type', $job->type ?? '') == 'Part-time' ? 'selected' : '' }}>Part Time
-                </option>
-            </select>
+            <x-form-label for="job_type">Job Type</x-form-label>
+            <x-form-select name="job_type"
+                           :options="['Full-time', 'Part-time']"
+                           :resource="$job" />
         </div>
         <div class="flex grow flex-col">
-            <label class="mb-1 block"
-                   for="salary">Salary</label>
-            <input class="h-12 rounded px-4 py-2 focus:outline-blue-500"
-                   type="text"
-                   name="salary"
-                   value="{{ old('salary', $job->salary ?? '') }}" />
+            <x-form-label for="salary">Salary</x-form-label>
+            <x-form-input type="text"
+                          name="salary"
+                          :resource="$job" />
         </div>
     </div>
     <div class="flex justify-between">
