@@ -8,5 +8,5 @@
 
 @section('content')
     <x-job-form type="patch"
-        :job="$job" />
+                :job="$job" />
 @endsection

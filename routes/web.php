@@ -57,7 +57,10 @@ Route::resource(
             'update' => 'updateUser',
             'destroy' => 'destroyUser'
         ]);
-Route::get('/signup', [UserController::class, 'create'])->name('createUser');
+Route::get('/signup', [UserController::class, 'create'])->name('signup');
+Route::get('/login', function () {
+    return view('pages.login');
+})->name('login');
 
 
 
