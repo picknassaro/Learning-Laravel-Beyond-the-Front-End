@@ -48,15 +48,16 @@ Route::resource(
 Route::resource(
     "user",
     UserController::class,
-    ['except' => ['index']]
+    // index is not needed, and create needs a different URL that is user-friendly
+    ['except' => ['index', 'create']]
 )->names([
-            'signup' => 'userSignUp',
             'store' => 'storeUser',
             'show' => 'showSingleUser',
             'edit' => 'editUser',
             'update' => 'updateUser',
             'destroy' => 'destroyUser'
         ]);
+Route::get('/signup', [UserController::class, 'create'])->name('createUser');
 
 
 
