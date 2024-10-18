@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JobListingController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -39,6 +40,22 @@ Route::resource(
             'edit' => 'editJob',
             'update' => 'updateJob',
             'destroy' => 'destroyJob'
+        ]);
+
+
+
+// User routes
+Route::resource(
+    "user",
+    UserController::class,
+    ['except' => ['index']]
+)->names([
+            'create' => 'createUser',
+            'store' => 'storeUser',
+            'show' => 'showSingleUser',
+            'edit' => 'editUser',
+            'update' => 'updateUser',
+            'destroy' => 'destroyUser'
         ]);
 
 
