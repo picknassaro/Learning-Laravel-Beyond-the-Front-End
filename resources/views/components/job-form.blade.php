@@ -2,7 +2,7 @@
 
 <form class="mb-4 flex flex-wrap"
       method="POST"
-      action="{{ $type == 'post' ? '/jobs' : ($job ? "/jobs/{$job->id}" : '') }}">
+    action="{{ $type == 'post' ? route('showAllJobs') : ($job ? route('showSingleJob', ['job' => $job->id]) : '') }}">
     @csrf
     @if ($type == 'patch')
         @method('PATCH')
@@ -60,7 +60,7 @@
         <x-primary-button type="submit"
                           class="mr-4">Submit</x-primary-button>
         @if ($type == 'patch' && $job)
-            <a href="/jobs/{{ $job->id }}"
+            <a href="{{ route('showSingleJob', ['job' => $job->id]) }}"
                class="mr-4 self-start px-4 py-2 font-bold text-black">Cancel</a>
             <button type="submit"
                     class="mr-4 font-bold text-red-500"
@@ -72,7 +72,7 @@
     @if ($job)
         <form class="mb-4"
               method="POST"
-              action="/jobs/{{ $job->id }}"
+              action="{{ route('showSingleJob', ['job' => $job->id]) }}"
               id="delete"
               hidden>
     @endif
