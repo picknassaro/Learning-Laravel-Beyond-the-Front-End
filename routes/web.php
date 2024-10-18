@@ -50,7 +50,7 @@ Route::resource(
     UserController::class,
     ['except' => ['index']]
 )->names([
-            'create' => 'createUser',
+            'signup' => 'userSignUp',
             'store' => 'storeUser',
             'show' => 'showSingleUser',
             'edit' => 'editUser',
