@@ -1,6 +1,3 @@
-@php
-    // Get route names from routes/web.php
-@endphp
 <div>
     <x-nav-link routeName="home">Home</x-nav-link>
     <x-nav-link routeName="showAllJobs">Jobs</x-nav-link>
