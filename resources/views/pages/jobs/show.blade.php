@@ -23,7 +23,7 @@
             <br />
             <strong>Location:</strong> {{ $job['location'] }}
             <br />
-            <strong>Type:</strong> {{ $job['type'] }}
+            <strong>Type:</strong> {{ $job['job_type'] }}
             <br />
             <strong>Salary:</strong> {{ $job['salary'] }}
         </li>

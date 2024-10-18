@@ -36,14 +36,14 @@ class JobListingController extends Controller
             'title' => ['required'],
             'description' => ['required'],
             'location' => ['required'],
-            'type' => ['required'],
+            'job_type' => ['required'],
             'salary' => ['required', 'regex:/^\$((\d{1,3})(,\d{3})*|\d+)(\.\d{2})?$/']
         ]);
         $job::create([
             'title' => request('title'),
             'description' => request('description'),
             'location' => request('location'),
-            'type' => request('type'),
+            'job_type' => request('job_type'),
             'salary' => preg_match('/\.\d{2}$/', request('salary')) ? request('salary') : request('salary') . '.00',
             'employer_id' => rand(1, 100) // Randomizing because we don't have a employer auth system yet
         ]);
@@ -75,14 +75,14 @@ class JobListingController extends Controller
             'title' => ['required'],
             'description' => ['required'],
             'location' => ['required'],
-            'type' => ['required'],
+            'job_type' => ['required'],
             'salary' => ['required', 'regex:/^\$((\d{1,3})(,\d{3})*|\d+)(\.\d{2})?$/']
         ]);
         $job->update([
             'title' => request('title'),
             'description' => request('description'),
             'location' => request('location'),
-            'type' => request('type'),
+            'job_type' => request('job_type'),
             'salary' => preg_match('/\.\d{2}$/', request('salary')) ? request('salary') : request('salary') . '.00',
         ]);
         return redirect()->route('showSingleJob', ['job' => $job->id]);

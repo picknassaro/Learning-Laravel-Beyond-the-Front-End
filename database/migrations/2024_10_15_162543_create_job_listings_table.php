@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\Employer::class);
             $table->text('description');
             $table->string('location');
-            $table->string('type');
+            $table->string('job_type');
             $table->string('salary');
             $table->timestamps();
         });
