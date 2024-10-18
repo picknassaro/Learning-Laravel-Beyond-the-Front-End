@@ -35,7 +35,7 @@ Route::resource(
             'index' => 'showAllJobs',
             'create' => 'createJob',
             'store' => 'storeJob',
-            'show' => 'showJob',
+            'show' => 'showSingleJob',
             'edit' => 'editJob',
             'update' => 'updateJob',
             'destroy' => 'destroyJob'
