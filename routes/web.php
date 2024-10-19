@@ -26,7 +26,7 @@ Route::get('/contact', function () {
 
 // Job Listing routes
 Route::resource(
-    "jobs",
+    'jobs',
     JobListingController::class
     // if we don't need all seven routes, we can do the following:
     // 'only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']
@@ -46,7 +46,7 @@ Route::resource(
 
 // User routes
 Route::resource(
-    "user",
+    'user',
     UserController::class,
     // index is not needed, and create needs a different URL that is user-friendly
     ['except' => ['index', 'create']]
@@ -66,5 +66,5 @@ Route::get('/login', function () {
 
 // API stuff
 Route::get('/api', function () {
-    return ["foo" => "bar"];
+    return ['foo' => 'bar'];
 })->name('api');

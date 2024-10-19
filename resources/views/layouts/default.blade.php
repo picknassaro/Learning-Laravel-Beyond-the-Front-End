@@ -32,17 +32,23 @@
                 </div>
             </div>
         </nav>
-
-        <header class="bg-white shadow">
-            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                @yield('page-header')
-            </div>
-        </header>
-        <main>
-            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        @if (request()->route()->getName() != 'login' && request()->route()->getName() != 'signup')
+            <header class="bg-white shadow">
+                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                    @yield('page-header')
+                </div>
+            </header>
+            <main>
+                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                    @yield('content')
+                </div>
+            </main>
+        @else
+            <main class="mx-auto box-border flex max-w-7xl items-center justify-center px-4 py-6 sm:px-6 lg:px-8"
+                  style="min-height: calc(100vh - 18.5rem)">
                 @yield('content')
-            </div>
-        </main>
+            </main>
+        @endif
     </div>
 </body>
 
