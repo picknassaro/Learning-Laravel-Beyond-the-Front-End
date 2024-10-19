@@ -25,22 +25,22 @@ Route::get('/contact', function () {
 
 
 // Job Listing routes
+// if we don't need all seven routes, we can do the following:
+// 'only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']
+// or we can do the opposite:
+// 'except' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']
 Route::resource(
     'jobs',
     JobListingController::class
-    // if we don't need all seven routes, we can do the following:
-    // 'only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']
-    // or we can do the opposite:
-    // 'except' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']
 )->names([
-            'index' => 'showAllJobs',
             'create' => 'createJob',
             'store' => 'storeJob',
-            'show' => 'showSingleJob',
             'edit' => 'editJob',
             'update' => 'updateJob',
             'destroy' => 'destroyJob'
-        ]);
+        ])->middleware('auth');
+Route::get('/jobs', [JobListingController::class, 'index'])->name('showAllJobs');
+Route::get('/jobs/{job}', [JobListingController::class, 'show'])->name('showSingleJob');
 
 
 
@@ -60,6 +60,10 @@ Route::resource(
 Route::get('/signup', [UserController::class, 'signup'])->name('signup');
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'session'])->name('userSession');
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect()->route('home');
+})->name('logout');
 
 
 

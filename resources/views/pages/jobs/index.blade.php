@@ -5,8 +5,10 @@
 @section('page-header')
     <div class="flex justify-between">
         <x-page-header>Jobs</x-page-header>
-        <x-primary-button type="link"
-                          href="{{ route('createJob') }}">Post a Job</x-primary-button>
+        @auth
+            <x-primary-button type="link"
+                              href="{{ route('createJob') }}">Post a Job</x-primary-button>
+        @endauth
     </div>
 @endsection
 

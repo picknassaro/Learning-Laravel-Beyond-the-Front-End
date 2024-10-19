@@ -29,8 +29,8 @@ class UserController extends Controller
             'password' => ['required', Password::min(16)->max(256)->mixedCase()->letters()->numbers()->symbols(), 'confirmed'],
             // NOTE: because we are using Laravel's built-in User Model, we don't need to hash the password, because the casts() method in the User Model will hash it for us at read and write
         ]);
-        $user::create($newUser);
-        Auth::login($user);
+        $createdUser = $user::create($newUser);
+        Auth::login($createdUser);
         return redirect()->route('showAllJobs');
     }
 

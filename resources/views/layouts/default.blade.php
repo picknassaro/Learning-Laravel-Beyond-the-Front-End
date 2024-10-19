@@ -27,7 +27,12 @@
                         </div>
                     </div>
                     <div class="ml-4 flex items-center md:ml-6">
-                        <x-nav-link routeName="login">Log in</x-nav-link>
+                        @guest
+                            <x-nav-link routeName="login">Log in</x-nav-link>
+                        @endguest
+                        @auth
+                            <x-nav-link routeName="logout">Sign out</x-nav-link>
+                        @endauth
                     </div>
                 </div>
             </div>
