@@ -45,7 +45,7 @@
             </main>
         @else
             <main class="mx-auto box-border flex max-w-7xl items-center justify-center px-4 py-6 sm:px-6 lg:px-8"
-                  style="min-height: calc(100vh - 18.5rem)">
+                  style="min-height: calc(100vh - 8rem)">
                 @yield('content')
             </main>
         @endif
