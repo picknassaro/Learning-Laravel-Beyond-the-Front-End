@@ -32,21 +32,15 @@ class JobListingController extends Controller
      */
     public function store(JobListing $job)
     {
-        request()->validate([
+        $newJob = request()->validate([
             'title' => ['required'],
             'description' => ['required'],
             'location' => ['required'],
             'job_type' => ['required'],
-            'salary' => ['required', 'regex:/^\$((\d{1,3})(,\d{3})*|\d+)(\.\d{2})?$/']
+            'salary' => ['required', 'regex:/^\$((\d{1,3})(,\d{3})*|\d+)(\.\d{2})?$/'],
         ]);
-        $job::create([
-            'title' => request('title'),
-            'description' => request('description'),
-            'location' => request('location'),
-            'job_type' => request('job_type'),
-            'salary' => preg_match('/\.\d{2}$/', request('salary')) ? request('salary') : request('salary') . '.00',
-            'employer_id' => rand(1, 100) // Randomizing because we don't have a employer auth system yet
-        ]);
+        $newJob['employer_id'] = rand(1, 100);
+        $job::create($newJob);
         return redirect()->route('showAllJobs');
     }
 
