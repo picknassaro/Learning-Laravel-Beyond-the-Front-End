@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Auth;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -20,18 +22,16 @@ class UserController extends Controller
 
     public function store(User $user)
     {
-        request()->validate([
+        $newUser = request()->validate([
             'first_name' => ['required'],
             'last_name' => ['required'],
             'email' => ['required'],
-            'password' => ['required'],
+            'password' => ['required', Password::min(16)->max(256)->mixedCase()->letters()->numbers()->symbols(), 'confirmed'],
+            // NOTE: because we are using Laravel's built-in User Model, we don't need to hash the password, because the casts() method in the User Model will hash it for us at read and write
         ]);
-        $user::create([
-            'first_name' => request('first_name'),
-            'last_name' => request('last_name'),
-            'email' => request('email'),
-            'password' => request('password'),
-        ]);
+        $user::create($newUser);
+        Auth::login($user);
+        return redirect()->route('showAllJobs');
     }
 
     /**
