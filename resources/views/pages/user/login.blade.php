@@ -4,7 +4,7 @@
 
 @section('content')
     <form class="box-content w-96 rounded-2xl bg-white px-32 py-16"
-          action={{ route('userSession') }}
+          action={{ route('storeSession') }}
           method="POST">
         @csrf
         <h1 class="mb-8 text-center text-3xl font-bold tracking-tight text-gray-900">Log In</h1>

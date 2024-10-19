@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\JobListingController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,13 +26,14 @@ Route::get('/contact', function () {
 
 
 // Job Listing routes
-// if we don't need all seven routes, we can do the following:
+// If we don't need all seven routes, we can do the following:
 // 'only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']
-// or we can do the opposite:
+// Or we can do the opposite:
 // 'except' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']
 Route::resource(
     'jobs',
-    JobListingController::class
+    JobListingController::class,
+    ['except' => ['index', 'show']] // Index and show need different URLs that are user-friendly
 )->names([
             'create' => 'createJob',
             'store' => 'storeJob',
@@ -52,18 +54,19 @@ Route::resource(
     ['except' => ['index', 'create']]
 )->names([
             'store' => 'storeUser',
-            'show' => 'showSingleUser',
-            'edit' => 'editUser',
-            'update' => 'updateUser',
-            'destroy' => 'destroyUser'
+            'show' => 'showSingleUser', // Not worked on yet
+            'edit' => 'editUser', // Not worked on yet
+            'update' => 'updateUser', // Not worked on yet
+            'destroy' => 'destroyUser' // Not worked on yet
         ]);
-Route::get('/signup', [UserController::class, 'signup'])->name('signup');
-Route::get('/login', [UserController::class, 'login'])->name('login');
-Route::post('/login', [UserController::class, 'session'])->name('userSession');
-Route::post('/logout', function () {
-    Auth::logout();
-    return redirect()->route('home');
-})->name('logout');
+Route::get('/signup', [UserController::class, 'create'])->name('signup');
+
+
+
+// Session routes
+Route::get('/login', [SessionController::class, 'create'])->name('login');
+Route::post('/login', [SessionController::class, 'store'])->name('storeSession');
+Route::post('/logout', [SessionController::class, 'destroy'])->name('destroySession');
 
 
 

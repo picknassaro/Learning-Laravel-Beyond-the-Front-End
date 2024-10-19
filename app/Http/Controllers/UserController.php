@@ -11,7 +11,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function signup(User $user)
+    public function create()
     {
         return view('pages.user.signup');
     }
@@ -32,22 +32,6 @@ class UserController extends Controller
         $createdUser = $user::create($newUser);
         Auth::login($createdUser);
         return redirect()->route('showAllJobs');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function login(User $user)
-    {
-        return view('pages.user.login');
-    }
-
-    /**
-     * Store the session for logged in user
-     */
-    public function session(User $user)
-    {
-        dd('Session user ' . $user->id);
     }
 
     /**

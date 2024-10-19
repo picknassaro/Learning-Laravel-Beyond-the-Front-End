@@ -1,11 +1,11 @@
-@props(['type', 'href', 'linkAppearance' => null])
+@props(['type', 'href' => null, 'linkAppearance' => null])
 
 @php
     $classes = 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded self-start h-13';
 @endphp
 
 @if ($type === 'submit')
-    <button {{ $attributes->merge(['type' => 'submit', 'class' => $linkAppearance === null ?? $classes]) }}>
+    <button {{ $attributes->merge(['type' => 'submit', 'class' => $linkAppearance === null ? $classes : '']) }}>
         {{ $slot }}
     </button>
 @elseif ($type === 'link')
