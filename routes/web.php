@@ -60,7 +60,7 @@ Route::resource(
 Route::get('/signup', [UserController::class, 'signup'])->name('signup');
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'session'])->name('userSession');
-Route::get('/logout', function () {
+Route::post('/logout', function () {
     Auth::logout();
     return redirect()->route('home');
 })->name('logout');

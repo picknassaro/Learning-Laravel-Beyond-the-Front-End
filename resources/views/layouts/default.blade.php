@@ -31,7 +31,15 @@
                             <x-nav-link routeName="login">Log in</x-nav-link>
                         @endguest
                         @auth
-                            <x-nav-link routeName="logout">Sign out</x-nav-link>
+                            <form action="{{ route('logout') }}"
+                                  method="POST">
+                                @csrf
+                                <x-primary-button type="submit"
+                                                  linkAppearance="true"
+                                                  class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white md:inline md:text-sm">
+                                    Sign out
+                                </x-primary-button>
+                            </form>
                         @endauth
                     </div>
                 </div>
