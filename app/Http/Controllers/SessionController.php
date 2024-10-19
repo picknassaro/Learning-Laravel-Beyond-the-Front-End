@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use Illuminate\Validation\ValidationException;
 
 class SessionController extends Controller
 {
@@ -25,7 +24,9 @@ class SessionController extends Controller
             'password' => ['required']
         ]);
         if (!Auth::attempt($authRequest)) {
-            throw ValidationException::withMessages(['email' => 'Invalid email', 'password' => 'Invalid password']);
+            return back()->withErrors([
+                'credentials' => 'The provided credentials do not match our records.'
+            ])->withInput(['email' => request('email')]);
         }
         request()->session()->regenerate();
         return redirect()->route('showAllJobs');

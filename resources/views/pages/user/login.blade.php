@@ -26,6 +26,9 @@
         </div>
         <x-primary-button type="submit"
                           class="mb-2">Log In</x-primary-button>
+        @error('credentials')
+            <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
+        @enderror
         <p class="mb-2">Or</p>
         <a href="{{ route('signup') }}"
            class="underline">Sign up</a>
