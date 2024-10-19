@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\JobListing;
+use Auth;
 
 class JobListingController extends Controller
 {
@@ -57,7 +58,12 @@ class JobListingController extends Controller
      */
     public function edit(JobListing $job)
     {
-        return view('pages.jobs.edit', ['job' => $job]);
+        if ($job->employer->user->is(Auth::user())) {
+            return view('pages.jobs.edit', ['job' => $job]);
+        } else {
+            return redirect()->route('showSingleJob', ['job' => $job->id]);
+        }
+        // NOTE: there is middleware defined in /routes/web.php will redirect a guest user to the login page if they try to access /job/{job}/edit, so we don't need to deal with that functionality here.
     }
 
     /**
