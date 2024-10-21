@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Home routes
-Route::get('/', function () {
-    return view('pages.home');
-})->name('home');
+Route::get('/', [JobListingController::class, 'index'])->name('home');
 
 Route::get('/home', function () {
     return redirect()->route('home');
