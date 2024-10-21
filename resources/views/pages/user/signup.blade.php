@@ -2,6 +2,8 @@
 
 @section('title', 'Sign up')
 
+@vite('resources/css/auth-form.css')
+
 @section('content')
     <form class="box-content w-96 rounded-2xl bg-white p-4 sm:px-8 md:px-16 md:py-8"
           action="{{ route('storeUser') }}"
@@ -62,7 +64,7 @@
                           class="mb-2">Sign Up</x-primary-button>
         <p class="mb-2">Or</p>
         <a href="{{ route('signup') }}"
-           class="underline mb-2 inline-block">Log in</a>
+           class="switchAuthLink mb-2 inline-block">Log in</a>
         @if ($errors->any())
             <div class="text-red-500">
                 <ul>

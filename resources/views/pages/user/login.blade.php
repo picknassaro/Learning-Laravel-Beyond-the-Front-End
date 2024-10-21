@@ -2,6 +2,8 @@
 
 @section('title', 'Log in')
 
+@vite('resources/css/auth-form.css')
+
 @section('content')
     <form class="box-content w-96 rounded-2xl bg-white p-4 sm:px-8 md:px-16 md:py-8"
           action={{ route('storeSession') }}
@@ -31,6 +33,6 @@
         @enderror
         <p class="mb-2">Or</p>
         <a href="{{ route('signup') }}"
-           class="underline">Sign up</a>
+           class="switchAuthLink">Sign up</a>
     </form>
 @endsection
