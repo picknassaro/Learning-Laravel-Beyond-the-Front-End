@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\JobListingPosted;
+use App\Jobs\TranslateJobListing;
 use App\Models\JobListing;
 use Illuminate\Support\Facades\Route;
 
@@ -87,6 +88,9 @@ Route::get('/jobs/{job}/test-email/job-posted', function (JobListing $job) {
     )->send(
             new JobListingPosted($job)
         );
+    // REMEMBER TO RUN QUEUE WORKER
+    // Note that dispatch has a slight delay
+    TranslateJobListing::dispatch($job);
     return 'Test email sent';
     // If we have not set up an SMTP server, this will just log to a file, not actually send an email
     // Log is found in /storage/logs/laravel.log
