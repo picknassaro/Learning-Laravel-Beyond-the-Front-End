@@ -11,22 +11,22 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="h-full">
+<body class="h-full min-w-80">
     <div class="min-h-full">
         <nav class="bg-gray-800">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div class="flex h-16 items-center justify-between">
-                    <div class="flex items-center">
+                <div class="flex sm:h-16 items-start sm:items-center justify-between pt-2 sm:pt-0">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center">
                         <div class="flex-shrink-0">
-                            <img class="h-8 w-8"
+                            <img class="h-8 w-8 ml-3"
                                  src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
                                  alt="Your Company">
                         </div>
-                        <div class="ml-10 flex items-baseline space-x-4">
+                        <div class="sm:ml-4 flex items-baseline space-x-4">
                             <x-primary-nav />
                         </div>
                     </div>
-                    <div class="ml-4 flex items-center md:ml-6">
+                    <div class="flex items-center mx-4">
                         @guest
                             <x-nav-link routeName="login">Log in</x-nav-link>
                         @endguest
@@ -36,7 +36,7 @@
                                 @csrf
                                 <x-primary-button type="submit"
                                                   linkAppearance="true"
-                                                  class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white md:inline md:text-sm">
+                                                  class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white md:inline">
                                     Log out
                                 </x-primary-button>
                             </form>
