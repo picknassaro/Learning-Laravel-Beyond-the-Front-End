@@ -2,7 +2,7 @@
 
 @php
     $jobTitle = $job['title'];
-    $employer = $job->employer->name;
+    $employer = $job->employer->employer_name;
     $pageTitle = $jobTitle . ' at ' . $employer;
 @endphp
 @section('title', $pageTitle)

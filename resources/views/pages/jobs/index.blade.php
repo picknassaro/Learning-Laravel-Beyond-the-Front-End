@@ -19,7 +19,7 @@
                 <strong>Title:</strong> <a href="{{ route('showSingleJob', ['job' => $job->id]) }}"
                    class="underline">{{ $job['title'] }}</a>
                 <br />
-                <strong>Company:</strong> {{ $job->employer->name }}
+                <strong>Company:</strong> {{ $job->employer->employer_name }}
                 <br />
                 <strong>Description:</strong> {{ $job['description'] }}
                 <br />
