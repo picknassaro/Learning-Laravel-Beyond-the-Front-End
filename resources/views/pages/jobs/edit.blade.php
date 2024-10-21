@@ -7,6 +7,6 @@
 @endsection
 
 @section('content')
-    <x-job-form type="patch"
+    <x-job-form type="edit"
                 :job="$job" />
 @endsection

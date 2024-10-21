@@ -2,9 +2,9 @@
 
 <form class="mb-4 flex flex-wrap"
       method="POST"
-      action="{{ $type == 'post' ? route('showAllJobs') : ($job ? route('showSingleJob', ['job' => $job->id]) : '') }}">
+      action="{{ $type == 'create' ? route('showAllJobs') : ($job ? route('showSingleJob', ['job' => $job->id]) : '') }}">
     @csrf
-    @if ($type == 'patch')
+    @if ($type == 'edit')
         @method('PATCH')
     @endif
     <div class="mb-4 w-full">

@@ -7,5 +7,5 @@
 @endsection
 
 @section('content')
-    <x-job-form type="post" />
+    <x-job-form type="create" />
 @endsection
