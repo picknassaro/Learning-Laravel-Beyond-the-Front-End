@@ -46,6 +46,7 @@ class JobListingController extends Controller
         $job::create($newJob);
 
         Mail::to($job->employer->user->email)->send(new JobListingPosted($job));
+        // An alternative to send is queue. If using queue, the php artisan queue:work command must run in the background.
 
         return redirect()->route('showAllJobs');
     }
