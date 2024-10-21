@@ -3,7 +3,7 @@
 @section('title', 'Log in')
 
 @section('content')
-    <form class="box-content w-96 rounded-2xl bg-white px-32 py-16"
+    <form class="box-content w-96 rounded-2xl bg-white p-4 sm:px-8 md:px-16 md:py-8"
           action={{ route('storeSession') }}
           method="POST">
         @csrf

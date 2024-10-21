@@ -3,7 +3,7 @@
 @section('title', 'Sign up')
 
 @section('content')
-    <form class="box-content w-96 rounded-2xl bg-white p-4 md:px-16 md:py-8"
+    <form class="box-content w-96 rounded-2xl bg-white p-4 sm:px-8 md:px-16 md:py-8"
           action="{{ route('storeUser') }}"
           method="POST">
         @csrf
