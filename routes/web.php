@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\JobListingPosted;
+use App\Models\JobListing;
 use Illuminate\Support\Facades\Route;
 
 
@@ -80,11 +81,11 @@ Route::get('/api', function () {
 
 
 // Test emails
-Route::get('/jobs/{job}/test-email/job-posted', function () {
+Route::get('/jobs/{job}/test-email/job-posted', function (JobListing $job) {
     Mail::to(
         'test@thirtydaystolearnlaravel.test'
     )->send(
-            new JobListingPosted()
+            new JobListingPosted($job)
         );
     return 'Test email sent';
     // If we have not set up an SMTP server, this will just log to a file, not actually send an email

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\JobListing;
 use Auth;
+use Mail;
+use App\Mail\JobListingPosted;
 
 class JobListingController extends Controller
 {
@@ -42,6 +44,9 @@ class JobListingController extends Controller
         ]);
         $newJob['employer_id'] = rand(1, 100);
         $job::create($newJob);
+
+        Mail::to($job->employer->user->email)->send(new JobListingPosted($job));
+
         return redirect()->route('showAllJobs');
     }
 

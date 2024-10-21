@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\JobListing;
 
 class JobListingPosted extends Mailable
 {
@@ -16,7 +17,7 @@ class JobListingPosted extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public JobListing $job)
     {
         //
     }
@@ -37,7 +38,7 @@ class JobListingPosted extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.job-listing-posted',
+            view: 'mail.job-listing-posted',
         );
     }
 
