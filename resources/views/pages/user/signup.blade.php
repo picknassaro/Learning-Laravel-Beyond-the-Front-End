@@ -27,6 +27,14 @@
             </div>
         </div>
         <div class="mb-4 block">
+            <x-form-label for="employer_name">Company Name (optional)</x-form-label>
+            <x-form-input full="true"
+                          type="text"
+                          name="employer_name"
+                          id="employer_name"
+                          outline="true" />
+        </div>
+        <div class="mb-4 block">
             <x-form-label for="email">Email</x-form-label>
             <x-form-input full="true"
                           type="email"
@@ -54,6 +62,16 @@
                           class="mb-2">Sign Up</x-primary-button>
         <p class="mb-2">Or</p>
         <a href="{{ route('signup') }}"
-           class="underline">Log in</a>
+           class="underline mb-2 inline-block">Log in</a>
+        @if ($errors->any())
+            <div class="text-red-500">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li class="text-sm">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </form>
+
 @endsection

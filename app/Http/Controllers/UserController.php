@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Employer;
 use Auth;
 use Illuminate\Validation\Rules\Password;
 
@@ -20,7 +21,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      */
 
-    public function store(User $user)
+    public function store(User $user, Employer $employer)
     {
         $newUser = request()->validate([
             'first_name' => ['required'],
@@ -28,9 +29,24 @@ class UserController extends Controller
             'email' => ['required'],
             'password' => ['required', Password::min(16)->max(256)->mixedCase()->letters()->numbers()->symbols(), 'confirmed'],
             // NOTE: because we are using Laravel's built-in User Model, we don't need to hash the password, because the casts() method in the User Model will hash it for us at read and write
+            'employer_name' => ['nullable'],
         ]);
+
+        if ($newUser['employer_name']) {
+            $employerName = $newUser['employer_name'];
+            unset($newUser['employer_name']);
+        }
+
         $createdUser = $user::create($newUser);
         Auth::login($createdUser);
+
+        if (isset($employerName)) {
+            $employer::create([
+                'user_id' => $createdUser->id,
+                'employer_name' => $employerName
+            ]);
+        }
+
         return redirect()->route('showAllJobs');
     }
 

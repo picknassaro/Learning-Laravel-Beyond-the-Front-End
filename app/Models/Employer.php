@@ -9,6 +9,16 @@ class Employer extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'user_id',
+        'employer_name',
+    ];
+
     public function jobListings()
     {
         return $this->hasMany(JobListing::class);
