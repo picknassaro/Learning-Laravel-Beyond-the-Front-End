@@ -30,5 +30,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('edit-job', function (User $user, JobListing $job) {
             return $job->employer->user->is(Auth::user());
         });
+
+        Gate::define('is-admin', function (User $user) {
+            return $user->admin === 1;
+        });
     }
 }

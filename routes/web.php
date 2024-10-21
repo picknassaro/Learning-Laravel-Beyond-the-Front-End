@@ -3,6 +3,8 @@
 use App\Http\Controllers\JobListingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\JobListingPosted;
 use Illuminate\Support\Facades\Route;
 
 
@@ -74,3 +76,17 @@ Route::post('/logout', [SessionController::class, 'destroy'])->name('destroySess
 Route::get('/api', function () {
     return ['foo' => 'bar'];
 })->name('api');
+
+
+
+// Test emails
+Route::get('/jobs/{job}/test-email/job-posted', function () {
+    Mail::to(
+        'test@thirtydaystolearnlaravel.test'
+    )->send(
+            new JobListingPosted()
+        );
+    return 'Test email sent';
+    // If we have not set up an SMTP server, this will just log to a file, not actually send an email
+    // Log is found in /storage/logs/laravel.log
+})->name('jobPostedTestEmail')->middleware('auth', 'can:is-admin');
