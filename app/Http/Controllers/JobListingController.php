@@ -14,7 +14,7 @@ class JobListingController extends Controller
      */
     public function index()
     {
-        $jobs = JobListing::with('employer')->latest()->simplePaginate(10);
+        $jobs = JobListing::with('employer')->latest()->simplePaginate(12);
         return view('pages.jobs.index', [
             'jobs' => $jobs
         ]);

@@ -13,9 +13,9 @@
 @endsection
 
 @section('content')
-    <ul>
+    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
         @foreach ($jobs as $job)
-            <li class="mb-4 list-disc">
+            <li class="">
                 <strong>Title:</strong> <a href="{{ route('showSingleJob', ['job' => $job->id]) }}"
                    class="underline">{{ $job['title'] }}</a>
                 <br />

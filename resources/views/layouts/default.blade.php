@@ -14,19 +14,19 @@
 <body class="h-full min-w-80">
     <div class="min-h-full">
         <nav class="bg-gray-800">
-            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div class="flex sm:h-16 items-start sm:items-center justify-between pt-2 sm:pt-0">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center">
+            <div class="mx-auto max-w-screen-xl">
+                <div class="flex sm:h-16 items-center justify-between">
+                    <div class="flex items-start">
                         <div class="flex-shrink-0">
-                            <img class="h-8 w-8 ml-3"
+                            <img class="h-8 w-8"
                                  src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
                                  alt="Your Company">
                         </div>
-                        <div class="sm:ml-4 flex items-baseline space-x-4">
+                        <div class="flex items-baseline space-x-4">
                             <x-primary-nav />
                         </div>
                     </div>
-                    <div class="flex items-center mx-4">
+                    <div class="flex items-center">
                         @guest
                             <x-nav-link routeName="login">Log in</x-nav-link>
                         @endguest
@@ -47,17 +47,17 @@
         </nav>
         @if (request()->route()->getName() != 'login' && request()->route()->getName() != 'signup')
             <header class="bg-white shadow">
-                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-screen-xl">
                     @yield('page-header')
                 </div>
             </header>
             <main>
-                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-screen-xl">
                     @yield('content')
                 </div>
             </main>
         @else
-            <main class="mx-auto box-border flex max-w-7xl items-center justify-center px-4 py-6 sm:px-6 lg:px-8"
+            <main class="mx-auto box-border flex max-w-screen-xl items-center justify-center "
                   style="min-height: calc(100vh - 8rem)">
                 @yield('content')
             </main>
