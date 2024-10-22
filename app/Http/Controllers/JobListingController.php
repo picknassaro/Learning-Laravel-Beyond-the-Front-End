@@ -56,7 +56,13 @@ class JobListingController extends Controller
      */
     public function show(JobListing $job)
     {
-        return view('pages.jobs.show', ['job' => $job]);
+        $relatedJobs = JobListing::with('employer')
+            ->where('employer_id', $job->employer_id)
+            ->where('id', '!=', $job->id)
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
+        return view('pages.jobs.show', ['job' => $job, 'relatedJobs' => $relatedJobs]);
     }
 
     /**

@@ -10,7 +10,7 @@
 @endphp
 
 <a @if ($routeName) href="{{ route($routeName) }}" @endif
-   class="{{ $isActive ? 'bg-gray-900 text-white' : '' }} rounded-md px-3 py-2 text-sm md:text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+   class="{{ $isActive ? 'bg-gray-900 text-white' : '' }} sm:mx-2 rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
    aria-current="{{ $isActive ? 'page' : 'false' }}">
     {{ $slot }}
 </a>

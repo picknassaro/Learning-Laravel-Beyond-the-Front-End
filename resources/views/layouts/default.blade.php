@@ -11,14 +11,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="h-full min-w-80">
+<body class="min-w-80 h-full">
     <div class="min-h-full">
         <nav class="bg-gray-800">
-            <div class="mx-auto max-w-screen-xl">
-                <div class="flex sm:h-16 items-center justify-between">
+            <div class="mx-auto p-4 sm:px-8 sm:py-2"
+                 style="max-width:84rem;">
+                <div class="flex items-center justify-between sm:h-16">
                     <div class="flex items-start">
                         <div class="flex-shrink-0">
-                            <img class="h-8 w-8"
+                            <img class="h-8 w-8 mr-2"
                                  src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
                                  alt="Your Company">
                         </div>
@@ -47,18 +48,20 @@
         </nav>
         @if (request()->route()->getName() != 'login' && request()->route()->getName() != 'signup')
             <header class="bg-white shadow">
-                <div class="mx-auto max-w-screen-xl">
+                <div class="mx-auto px-4 py-4 sm:px-8 sm:py-8"
+                     style="max-width:84rem;">
                     @yield('page-header')
                 </div>
             </header>
             <main>
-                <div class="mx-auto max-w-screen-xl">
+                <div class="mx-auto px-4 py-4 sm:px-8 sm:py-8"
+                     style="max-width:84rem;">
                     @yield('content')
                 </div>
             </main>
         @else
-            <main class="mx-auto box-border flex max-w-screen-xl items-center justify-center "
-                  style="min-height: calc(100vh - 8rem)">
+            <main class="mx-auto flex items-center justify-center"
+                  style="min-height: calc(100vh - 8rem); max-width:84rem;">
                 @yield('content')
             </main>
         @endif

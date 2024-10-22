@@ -20,7 +20,7 @@ class JobListingFactory extends Factory
         return [
             'title' => fake()->jobTitle(),
             'employer_id' => Employer::inRandomOrder()->first()->id,
-            'description' => fake()->paragraph(),
+            'description' => fake()->paragraphs(25, true),
             'location' => fake()->randomElement([fake()->city(), 'Remote']),
             'job_type' => fake()->randomElement(['Full-time', 'Part-time']),
             'salary' => fake()->numerify('$###,###.##'),

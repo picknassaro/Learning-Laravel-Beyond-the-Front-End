@@ -12,4 +12,8 @@
     <a {{ $attributes->merge(['href' => $href, 'class' => $classes]) }}>
         {{ $slot }}
     </a>
+@elseif ($type === 'buttonLink')
+    <a {{ $attributes->merge(['href' => $href, 'class' => $linkAppearance === null ? $classes : '']) }}>
+        {{ $slot }}
+    </a>
 @endif

@@ -13,23 +13,25 @@
 @endsection
 
 @section('content')
-    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+    <ul class="grid grid-cols-1 gap-8 pb-8 md:grid-cols-2 lg:grid-cols-3">
         @foreach ($jobs as $job)
-            <li class="">
-                <strong>Title:</strong> <a href="{{ route('showSingleJob', ['job' => $job->id]) }}"
-                   class="underline">{{ $job['title'] }}</a>
-                <br />
-                <strong>Company:</strong> {{ $job->employer->employer_name }}
-                <br />
-                <strong>Description:</strong> {{ $job['description'] }}
-                <br />
-                <strong>Location:</strong> {{ $job['location'] }}
-                <br />
-                <strong>Type:</strong> {{ $job['job_type'] }}
-                <br />
-                <strong>Salary:</strong> {{ $job['salary'] }}
-            </li>
+            <x-job-card :job="$job"
+                        strLimit="250"
+                        cardSize="normal" />
         @endforeach
     </ul>
-    {{ $jobs->links() }}
+    <div class="grid grid-cols-2">
+        <div class="flex justify-start">
+            @if ($jobs->previousPageUrl())
+                <x-primary-button type="buttonLink"
+                                  href="{{ $jobs->previousPageUrl() }}">Previous</x-primary-button>
+            @endif
+        </div>
+        <div class="flex justify-end">
+            @if ($jobs->nextPageUrl())
+                <x-primary-button type="buttonLink"
+                                  href="{{ $jobs->nextPageUrl() }}">Next</x-primary-button>
+            @endif
+        </div>
+    </div>
 @endsection
