@@ -22,14 +22,15 @@
                          name="description"
                          :resource="$job" />
     </div>
-    <div class="mb-4 flex w-full">
-        <div class="mr-4 flex grow flex-col">
+    <div
+         class="mb-4 grid w-full grid-cols-1 grid-rows-3 gap-4 sm:grid-cols-2 sm:grid-rows-2 lg:grid-cols-3 lg:grid-rows-1">
+        <div class="flex grow flex-col sm:col-span-2 lg:col-span-1">
             <x-form-label for="location">Location</x-form-label>
             <x-form-input type="text"
                           name="location"
                           :resource="$job" />
         </div>
-        <div class="mr-4 flex grow flex-col">
+        <div class="flex grow flex-col">
             <x-form-label for="job_type">Job Type</x-form-label>
             <x-form-select name="job_type"
                            :options="['Full-time', 'Part-time']"
