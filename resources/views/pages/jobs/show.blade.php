@@ -20,8 +20,8 @@
 @endsection
 
 @section('content')
-    <div class="md:flex md:justify-center md:flex-wrap xl:grid xl:grid-cols-[48rem_1fr] xl:gap-8">
-        <div class="flex justify-center mb-8 2xl:mb-0">
+    <div class="mb-8 md:flex md:flex-wrap md:justify-center xl:grid xl:grid-cols-[48rem_1fr] xl:gap-8">
+        <div class="mb-8 flex justify-center 2xl:mb-0">
             <x-job-card :job="$job"
                         cardSize="normal" />
         </div>
@@ -45,5 +45,13 @@
                 @endforeach
             </div>
         </div>
+    </div>
+    <div>
+        @if ($job->users->isNotEmpty())
+        <h2 class="mb-4 text-xl font-semibold">Latest applicants:</h2>
+            @foreach ($job->users as $user)
+                <span class="mb-4">{{ $user->first_name[0] . '. ' . $user->last_name }}{{ !$loop->last ? ', ' : '' }}</span>
+            @endforeach
+        @endif
     </div>
 @endsection
