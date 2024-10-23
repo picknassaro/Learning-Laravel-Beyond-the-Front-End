@@ -7,6 +7,7 @@ use App\Models\Employer;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,5 +24,19 @@ class DatabaseSeeder extends Seeder
         ]);
         Employer::factory(100)->create();
         JobListing::factory(1000)->create();
+
+        // Fetch all job listings and users
+        $jobListingIds = JobListing::pluck('id')->toArray();
+        $userIds = User::pluck('id')->toArray();
+
+        // Create 1000 random job_listing_user entries
+        for ($i = 0; $i < 1000; $i++) {
+            DB::table('job_listing_user')->insert([
+            'job_listing_id' => $jobListingIds[array_rand($jobListingIds)],
+            'user_id' => $userIds[array_rand($userIds)],
+            'created_at' => now(),
+            'updated_at' => now(),
+            ]);
+        }
     }
 }

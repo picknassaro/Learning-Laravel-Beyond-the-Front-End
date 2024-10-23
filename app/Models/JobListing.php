@@ -15,4 +15,9 @@ class JobListing extends Model
     {
         return $this->belongsTo(Employer::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'job_listing_user');
+    }
 }
