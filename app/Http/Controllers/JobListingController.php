@@ -71,7 +71,7 @@ class JobListingController extends Controller
     public function edit(JobListing $job)
     {
         // Use can() or cannot() to query the Gate in AppServiceProvider. Using can() will return true if the Gate returns true, and false if the Gate returns false. Using cannot() will behave inversely.
-        if (Auth::user()->can('edit-job', $job)) {
+        if (Auth::user()->can('edit-job', $job) || Auth::user()->can('is-admin', $job)) {
             return view('pages.jobs.edit', ['job' => $job]);
         } else {
             return redirect()->route('showSingleJob', ['job' => $job->id]);

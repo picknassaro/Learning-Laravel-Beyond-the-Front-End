@@ -12,10 +12,10 @@
 @section('page-header')
     <div class="flex justify-between">
         <x-page-header>{{ $jobTitle }}</x-page-header>
-        @can('edit-job', $job)
+        @if (Auth::check() && (Auth::user()->can('edit-job', $job) || Auth::user()->can('is-admin', $job)))
             <x-primary-button type="link"
                               href="{{ route('editJob', ['job' => $job->id]) }}">Edit Job</x-primary-button>
-        @endcan
+        @endif
     </div>
 @endsection
 
