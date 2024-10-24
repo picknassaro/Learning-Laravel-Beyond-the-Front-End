@@ -11,10 +11,11 @@ use App\Models\JobListing;
 
 
 // Home routes
-Route::get('/', [JobListingController::class, 'index'])->name('home');
-
+Route::get('/', function () {
+    return redirect()->route('showAllJobs');
+})->name('index');
 Route::get('/home', function () {
-    return redirect()->route('home');
+    return redirect()->route('index');
 });
 
 

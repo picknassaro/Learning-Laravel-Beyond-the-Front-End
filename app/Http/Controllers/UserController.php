@@ -54,7 +54,7 @@ class UserController extends Controller
             setcookie('postRedirectReturnUrl', '', time() - 3600, '/');
             return redirect($redirectUrl);
         } else {
-            return redirect()->route('home');
+            return redirect()->route('showAllJobs');
         }
     }
 
