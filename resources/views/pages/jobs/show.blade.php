@@ -30,7 +30,6 @@
             <div class="grid grid-rows-3 gap-8">
                 @foreach ($relatedJobs as $relatedJob)
                     <x-job-card :job="$relatedJob"
-                                strLimit="250"
                                 cardSize="mini" />
                 @endforeach
             </div>
@@ -40,7 +39,6 @@
             <div class="grid grid-cols-2 grid-rows-2 gap-8 xl:grid xl:grid-cols-1 xl:grid-rows-3">
                 @foreach ($relatedJobs as $relatedJob)
                     <x-job-card :job="$relatedJob"
-                                strLimit="250"
                                 cardSize="mini" />
                 @endforeach
             </div>

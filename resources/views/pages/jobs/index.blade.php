@@ -16,7 +16,6 @@
     <ul class="grid grid-cols-1 gap-8 pb-8 md:grid-cols-2 lg:grid-cols-3">
         @foreach ($jobs as $job)
             <x-job-card :job="$job"
-                        strLimit="250"
                         cardSize="normal" />
         @endforeach
     </ul>

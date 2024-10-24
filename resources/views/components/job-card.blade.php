@@ -1,4 +1,4 @@
-@props(['job', 'strLimit' => null, 'cardSize' => 'normal'])
+@props(['job', 'strLimit' => 250, 'cardSize' => 'normal'])
 
 <li
     class="{{ $cardSize === 'mini' ? 'md:max-w-xl' : 'max-w-5xl' }} justify-self-center overflow-hidden rounded-xl bg-white p-4 shadow-lg md:p-8">
