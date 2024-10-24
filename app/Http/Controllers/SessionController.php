@@ -29,6 +29,8 @@ class SessionController extends Controller
             ])->withInput(['email' => request('email')]);
         }
         request()->session()->regenerate();
+
+        return redirect()->route('dashboard');
     }
 
     /**

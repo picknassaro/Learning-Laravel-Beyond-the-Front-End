@@ -47,6 +47,8 @@ class UserController extends Controller
                 'employer_name' => $employerName
             ]);
         }
+
+        return redirect()->route('showAllJobs');
     }
 
     /**
