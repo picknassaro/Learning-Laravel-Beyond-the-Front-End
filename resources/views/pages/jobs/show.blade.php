@@ -23,7 +23,8 @@
     <div class="mb-8 md:flex md:flex-wrap md:justify-center xl:grid xl:grid-cols-[48rem_1fr] xl:gap-8">
         <div class="mb-8 flex justify-center 2xl:mb-0">
             <x-job-card :job="$job"
-                        cardSize="normal" />
+                        cardSize="normal"
+                        strLimit="null" />
         </div>
         <div class="md:hidden">
             <h2 class="mb-4 text-xl font-semibold">Other Jobs from the same Employer</h2>
