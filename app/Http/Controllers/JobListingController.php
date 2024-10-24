@@ -6,7 +6,6 @@ use App\Models\JobListing;
 use Auth;
 use Mail;
 use App\Mail\JobListingPosted;
-use Illuminate\Support\Facades\Route;
 
 class JobListingController extends Controller
 {
@@ -15,10 +14,6 @@ class JobListingController extends Controller
      */
     public function index()
     {
-        if (!Auth::check() && Route::current()->can('is-returnRoute')) {
-            setcookie('postRedirectReturnUrl', url()->current(), 0, '/');
-        }
-
         $jobs = JobListing::with('employer')->latest()->simplePaginate(12);
         return view('pages.jobs.index', [
             'jobs' => $jobs
@@ -61,10 +56,6 @@ class JobListingController extends Controller
      */
     public function show(JobListing $job)
     {
-        if (!Auth::check() && Route::current()->can('is-returnRoute')) {
-            setcookie('postRedirectReturnUrl', url()->current(), 0, '/');
-        }
-
         $relatedJobs = JobListing::with('employer')
             ->where('employer_id', $job->employer_id)
             ->where('id', '!=', $job->id)
