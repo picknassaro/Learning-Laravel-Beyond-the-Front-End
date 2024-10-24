@@ -63,7 +63,7 @@
         <x-primary-button type="submit"
                           class="mb-2">Sign Up</x-primary-button>
         <p class="mb-2">Or</p>
-        <a href="{{ route('signup') }}"
+        <a href="{{ route('login') }}"
            class="switchAuthLink mb-2 inline-block">Log in</a>
         @if ($errors->any())
             <div class="text-red-500">
