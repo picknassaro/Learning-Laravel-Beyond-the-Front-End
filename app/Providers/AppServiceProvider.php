@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\JobListing;
 use Gate;
 use Auth;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
 
         Gate::define('is-admin', function (User $user) {
             return $user->admin === 1;
+        });
+
+        Gate::define('is-returnRoute', function () {
+            return in_array(Route::currentRouteName(), ['showAllJobs', 'showSingleJob']);
         });
     }
 }

@@ -47,7 +47,14 @@ class UserController extends Controller
             ]);
         }
 
-        return redirect()->route('showAllJobs');
+        if (isset($_COOKIE['postRedirectReturnUrl'])) {
+            $redirectUrl = $_COOKIE['postRedirectReturnUrl'];
+            unset($_COOKIE['postRedirectReturnUrl']);
+            setcookie('postRedirectReturnUrl', '', time() - 3600, '/');
+            return redirect($redirectUrl);
+        } else {
+            return redirect()->route('home');
+        }
     }
 
     /**
