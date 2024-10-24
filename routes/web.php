@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\JobListingPosted;
 use App\Jobs\TranslateJobListing;
 use App\Models\JobListing;
-use Illuminate\Support\Facades\Route;
 
 
 
@@ -17,13 +16,6 @@ Route::get('/', [JobListingController::class, 'index'])->name('home');
 Route::get('/home', function () {
     return redirect()->route('home');
 });
-
-
-
-// Contact routes
-Route::get('/contact', function () {
-    return view('pages.contact');
-})->name('contact');
 
 
 
@@ -69,13 +61,6 @@ Route::get('/signup', [UserController::class, 'create'])->name('signup');
 Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store'])->name('storeSession');
 Route::post('/logout', [SessionController::class, 'destroy'])->name('destroySession');
-
-
-
-// API stuff
-Route::get('/api', function () {
-    return ['foo' => 'bar'];
-})->name('api');
 
 
 
