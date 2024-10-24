@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Employer;
+use App\Models\JobListing;
 use Auth;
 use Illuminate\Validation\Rules\Password;
 
@@ -60,9 +61,19 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(User $user, Employer $employer, JobListing $jobListing)
     {
-        dd('Show user ' . $user->id);
+        $user = Auth::user();
+
+        $employers = $employer::with('jobListings.employer')->where('user_id', $user->id)->get();
+
+        $jobs = $jobListing::whereIn('employer_id', $employers->pluck('id'))->with('employer')->latest()->simplePaginate(4);
+
+        return view('pages.user.dashboard', [
+            'user' => $user,
+            'employer' => $employers,
+            'jobs' => $jobs,
+        ]);
     }
 
     /**
