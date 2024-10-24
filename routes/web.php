@@ -45,15 +45,15 @@ Route::resource(
     'user',
     UserController::class,
     // index is not needed, and create needs a different URL that is user-friendly
-    ['except' => ['index', 'create']]
+    ['except' => ['index', 'create', 'show', 'store']]
 )->names([
-            'store' => 'storeUser',
-            'show' => 'showSingleUser', // Not worked on yet
             'edit' => 'editUser', // Not worked on yet
             'update' => 'updateUser', // Not worked on yet
             'destroy' => 'destroyUser' // Not worked on yet
-        ]);
+        ])->middleware('auth');
 Route::get('/signup', [UserController::class, 'create'])->name('signup')->middleware('guest');
+Route::post('/signup', [UserController::class, 'store'])->name('storeUser')->middleware('guest');
+Route::get('/dashboard', [UserController::class, 'show'])->name('dashboard')->middleware('auth');
 
 
 

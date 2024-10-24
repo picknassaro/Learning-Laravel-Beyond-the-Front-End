@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Post a New Job')
+@section('title', 'Edit Job')
 
 @section('page-header')
     <x-page-header>Edit Job: {{ $job->title }}</x-page-header>
