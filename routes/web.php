@@ -53,14 +53,14 @@ Route::resource(
             'update' => 'updateUser', // Not worked on yet
             'destroy' => 'destroyUser' // Not worked on yet
         ]);
-Route::get('/signup', [UserController::class, 'create'])->name('signup');
+Route::get('/signup', [UserController::class, 'create'])->name('signup')->middleware('guest');
 
 
 
 // Session routes
-Route::get('/login', [SessionController::class, 'create'])->name('login');
-Route::post('/login', [SessionController::class, 'store'])->name('storeSession');
-Route::post('/logout', [SessionController::class, 'destroy'])->name('destroySession');
+Route::get('/login', [SessionController::class, 'create'])->name('login')->middleware('guest');
+Route::post('/login', [SessionController::class, 'store'])->name('storeSession')->middleware('guest');
+Route::post('/logout', [SessionController::class, 'destroy'])->name('destroySession')->middleware('auth');
 
 
 
