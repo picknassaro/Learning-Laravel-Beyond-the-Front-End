@@ -72,9 +72,38 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(User $user)
+    public function update(User $user, Employer $employer)
     {
-        dd('Update user ' . $user->id);
+        $newUser = request()->validate([
+            'first_name' => ['nullable'],
+            'last_name' => ['nullable'],
+            'email' => ['nullable'],
+            'password' => ['nullable', Password::min(16)->max(256)->mixedCase()->letters()->numbers()->symbols(), 'confirmed'],
+            // NOTE: because we are using Laravel's built-in User Model, we don't need to hash the password, because the casts() method in the User Model will hash it for us at read and write
+            'employer_name' => ['nullable'],
+        ]);
+
+        if (empty(array_filter($newUser))) {
+            return redirect()->back()->withErrors(['All fields cannot be empty.']);
+        }
+
+        if ($newUser['employer_name']) {
+            $employerName = $newUser['employer_name'];
+            unset($newUser['employer_name']);
+        }
+
+        $user->update(array_filter($newUser, fn($value) => !is_null($value)));
+
+        if (isset($employerName)) {
+            $employerInstance = $employer::where('user_id', $user->id)->first();
+            if ($employerInstance) {
+                $employerInstance->update([
+                    'employer_name' => $employerName
+                ]);
+            }
+        }
+
+        return redirect()->route('dashboard')->with('success', 'Profile updated successfully');
     }
 
     /**
