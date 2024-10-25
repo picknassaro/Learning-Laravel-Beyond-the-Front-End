@@ -38,6 +38,9 @@
                 </div>
             </div>
         </div>
-        <div><h3 class="mb-4 text-xl font-medium">Update your profile:</h3></div>
+        <div>
+            <h3 class="mb-4 text-xl font-medium">Update your profile:</h3>
+            <x-auth-form type="updateProfile" :user="$user" />
+        </div>
     </div>
 @endsection
