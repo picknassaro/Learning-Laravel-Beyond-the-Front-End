@@ -1,6 +1,6 @@
 @props(['type' => '', 'user' => ''])
 
-<form class="box-content w-96 rounded-2xl bg-white p-4 sm:px-8 md:px-16 md:py-8"
+<form class="{{ $type === 'updateProfile' ? 'box-border' : 'box-content max-w-96' }} {{ $type === 'updateProfile' ? 'p-8' : 'p-4 sm:px-8 md:px-16 md:py-8' }} w-full rounded-2xl bg-white"
       @if ($type === 'signup') action="{{ route('storeUser') }}"
       @elseif ($type === 'login') action="{{ route('storeSession') }}"
       @elseif ($type === 'updateProfile') action="{{ route('updateUser', ['user' => $user->id]) }}" @endif
@@ -9,19 +9,19 @@
         @method('PATCH')
     @endif
     @csrf
-    @if ($type === 'signup' || $type === 'login')
-        <h1 class="mb-8 text-center text-3xl font-bold tracking-tight text-gray-900">
-            @if ($type === 'signup')
-                Sign Up
-            @elseif ($type === 'login')
-                Log In
-            @endif
-        </h1>
-    @endif
+    <h2 class="mb-8 text-center text-3xl font-bold tracking-tight text-gray-900">
+        @if ($type === 'signup')
+            Sign Up
+        @elseif ($type === 'login')
+            Log In
+        @elseif ($type === 'updateProfile')
+            Update Your Profile
+        @endif
+    </h2>
 
     @if ($type === 'signup' || $type === 'updateProfile')
-        <div class="flex-row md:flex">
-            <div class="mb-4 md:mr-4">
+        <div class="{{ $type === 'updateProfile' ? '' : 'sm:flex' }} gap-4">
+            <div class="mb-4">
                 <x-form-label for="first_name">First Name</x-form-label>
                 <x-form-input full="true"
                               type="text"
@@ -64,12 +64,6 @@
                       id="password"
                       outline="true" />
     </div>
-
-    @if ($type === 'login')
-        @error('credentials')
-            <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
-        @enderror
-    @endif
 
     @if ($type === 'signup' || $type === 'updateProfile')
         <div class="mb-4 block">
