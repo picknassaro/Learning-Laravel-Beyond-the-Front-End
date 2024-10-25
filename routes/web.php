@@ -45,10 +45,9 @@ Route::get('/jobs/{job}', [JobListingController::class, 'show'])->name('showSing
 Route::resource(
     'user',
     UserController::class,
-    // index is not needed, and create needs a different URL that is user-friendly
-    ['except' => ['index', 'create', 'show', 'store']]
+    // index and edit are not needed, and create, store, and show need different URLs that are user-friendly
+    ['except' => ['index', 'create', 'store', 'show', 'edit']]
 )->names([
-            'edit' => 'editUser', // Not worked on yet
             'update' => 'updateUser', // Not worked on yet
             'destroy' => 'destroyUser' // Not worked on yet
         ])->middleware('auth');

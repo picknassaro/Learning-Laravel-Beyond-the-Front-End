@@ -70,14 +70,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        dd('Edit user ' . $user->id);
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(User $user)
