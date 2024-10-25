@@ -19,8 +19,12 @@
     </div>
 @endsection
 
+@php
+    $jobHasApplicants = $job->users->isNotEmpty()
+@endphp
+
 @section('content')
-    <div class="mb-8 md:flex md:flex-wrap md:justify-center xl:grid xl:grid-cols-[48rem_1fr] xl:gap-8">
+    <div class="{{ $jobHasApplicants === true ? 'mb-8 md:flex md:flex-wrap md:justify-center xl:grid xl:grid-cols-[48rem_1fr] xl:gap-8' : '' }}">
         <div class="mb-8 flex justify-center xl:mb-0">
             <x-job-card :job="$job"
                         cardSize="normal"
@@ -36,10 +40,7 @@
                     @endforeach
                 </div>
             @endif
-            @if (
-                $job->users->isNotEmpty() &&
-                    Auth::check() &&
-                    (Auth::user()->can('edit-job', $job) || Auth::user()->can('is-admin', $job)))
+            @if ($jobHasApplicants === true && Auth::check() && (Auth::user()->can('edit-job', $job) || Auth::user()->can('is-admin', $job)))
                 <h2 class="mb-4 text-xl font-semibold">Latest applicants:</h2>
                 @foreach ($job->users as $user)
                     <span
