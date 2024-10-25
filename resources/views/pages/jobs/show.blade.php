@@ -20,7 +20,7 @@
 @endsection
 
 @php
-    $jobHasApplicants = $job->users->isNotEmpty();
+    $jobHasApplicants = $job->applicants->isNotEmpty();
 @endphp
 
 @section('content')
@@ -48,7 +48,7 @@
                 (Auth::user()->can('edit-job', $job) || Auth::user()->can('is-admin', $job)))
             <div class="md:block md:max-w-5xl">
                 <h2 class="mb-4 text-xl font-semibold">Latest applicants:</h2>
-                @foreach ($job->users as $user)
+                @foreach ($job->applicants as $user)
                     <span
                           class="mb-4">{{ $user->first_name[0] . '. ' . $user->last_name }}{{ !$loop->last ? ', ' : '' }}</span>
                 @endforeach

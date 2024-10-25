@@ -16,7 +16,8 @@ class JobListing extends Model
         return $this->belongsTo(Employer::class);
     }
 
-    public function users()
+    // This method is called applicants because it shows us which Users have applied to which JobListings. It is tracking a pivot table where we have foreign ids for job listings and foreign ids for users, hence the table name "job_listing_user". (Note the requirement for the table name to be the two models in alphabetical order, with underscores replacing camelcase.)
+    public function applicants()
     {
         return $this->belongsToMany(User::class, 'job_listing_user');
     }
