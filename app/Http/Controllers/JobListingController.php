@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\JobListing;
 use Auth;
-use Mail;
-use App\Mail\JobListingPosted;
 
 class JobListingController extends Controller
 {
@@ -18,8 +16,7 @@ class JobListingController extends Controller
         return view('pages.jobs.index', [
             'jobs' => $jobs
         ]);
-        // ↑↑ with('employer') is not for allowing us to show the employers. That will work regardless because the JobListing Model has an Eloquent relationship with the Employers Model.
-        // with('employer') is an eager loading method that prevent an N+1 query problem. It will load all the employers in one query instead of loading them one by one.
+        // ↑↑ with('employer') is not for allowing us to show the employers. That will work regardless because the JobListing Model has an Eloquent relationship with the Employers Model. with('employer') is an eager loading method that prevent an N+1 query problem. It will load all the employers in one query instead of loading them one by one.
     }
 
     /**
@@ -42,11 +39,8 @@ class JobListingController extends Controller
             'job_type' => ['required'],
             'salary' => ['required', 'regex:/^\$((\d{1,3})(,\d{3})*|\d+)(\.\d{2})?$/'],
         ]);
-        $newJob['employer_id'] = rand(1, 100);
+        $newJob['employer_id'] = rand(1, 100); // Sorry, this is random because the tutorial this project is loosely based on did not separate Users from Employers, and it is beyond the scope of what I'm trying to demonstrate for me to go back and change that. So, we'll just randomly assign an employer_id to each job listing because this repo is about demonstrating Laravel concepts, not building a fully functional job board.
         $job::create($newJob);
-
-        Mail::to($job->employer->user->email)->send(new JobListingPosted($job));
-        // An alternative to send is queue. If using queue, the php artisan queue:work command must run in the background.
 
         return redirect()->route('showAllJobs');
     }
@@ -70,7 +64,6 @@ class JobListingController extends Controller
      */
     public function edit(JobListing $job)
     {
-        // Use can() or cannot() to query the Gate in AppServiceProvider. Using can() will return true if the Gate returns true, and false if the Gate returns false. Using cannot() will behave inversely.
         if (Auth::user()->can('edit-job', $job) || Auth::user()->can('is-admin', $job)) {
             return view('pages.jobs.edit', ['job' => $job]);
         } else {

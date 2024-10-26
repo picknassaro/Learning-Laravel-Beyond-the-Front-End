@@ -3,10 +3,6 @@
 use App\Http\Controllers\JobListingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\JobListingPosted;
-use App\Jobs\TranslateJobListing;
-use App\Models\JobListing;
 
 
 
@@ -61,20 +57,3 @@ Route::get('/dashboard', [UserController::class, 'show'])->name('dashboard')->mi
 Route::get('/login', [SessionController::class, 'create'])->name('login')->middleware('guest');
 Route::post('/login', [SessionController::class, 'store'])->name('storeSession')->middleware('guest');
 Route::post('/logout', [SessionController::class, 'destroy'])->name('destroySession')->middleware('auth');
-
-
-
-// Test emails
-Route::get('/jobs/{job}/test-email/job-posted', function (JobListing $job) {
-    Mail::to(
-        'test@thirtydaystolearnlaravel.test'
-    )->send(
-            new JobListingPosted($job)
-        );
-    // REMEMBER TO RUN QUEUE WORKER
-    // Note that dispatch has a slight delay
-    TranslateJobListing::dispatch($job);
-    return 'Test email sent';
-    // If we have not set up an SMTP server, this will just log to a file, not actually send an email
-    // Log is found in /storage/logs/laravel.log
-})->name('jobPostedTestEmail')->middleware('auth', 'can:is-admin');
