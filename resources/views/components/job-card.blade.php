@@ -1,7 +1,7 @@
 @props(['job', 'strLimit' => 250, 'cardSize' => 'normal'])
 
 <li
-    class="{{ $cardSize === 'mini' ? 'md:max-w-xl' : 'max-w-5xl' }} justify-self-center overflow-hidden rounded-xl bg-white p-4 shadow-lg md:p-8">
+    class="{{ $cardSize === 'mini' ? 'md:max-w-xl' : 'max-w-5xl' }} w-full justify-self-center overflow-hidden rounded-xl bg-white p-4 shadow-lg md:p-8">
     <p class="mb-2">
         <strong>Title:</strong> <a href="{{ route('showSingleJob', ['job' => $job->id]) }}"
            class="underline">{{ $job['title'] }}</a>

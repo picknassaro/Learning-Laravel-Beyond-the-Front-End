@@ -1,4 +1,4 @@
-@props(['job' => null, 'type' => ['post', 'patch']])
+@props(['job' => null, 'type' => ''])
 
 <form class="mb-4 flex flex-wrap"
       method="POST"
@@ -46,7 +46,7 @@
     <div class="flex justify-between">
         <x-primary-button type="submit"
                           class="mr-4">Submit</x-primary-button>
-        @if ($type == 'patch' && $job)
+        @if ($type == 'edit' && $job)
             <a href="{{ route('showSingleJob', ['job' => $job->id]) }}"
                class="mr-4 self-start px-4 py-2 font-bold text-black">Cancel</a>
             <button type="submit"
@@ -55,7 +55,7 @@
         @endif
     </div>
 </form>
-@if ($type == 'patch')
+@if ($type == 'edit')
     @if ($job)
         <form class="mb-4"
               method="POST"
