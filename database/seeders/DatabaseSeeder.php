@@ -22,6 +22,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@thirtydaystolearnlaravel.test',
             'password' => bcrypt('12345678901234567890'),
         ]);
+        User::factory()->create([
+            'first_name' => 'Pick',
+            'last_name' => 'Nassaro',
+            'email' => 'notadmin@thirtydaystolearnlaravel.test',
+            'password' => bcrypt('12345678901234567890'),
+        ]);
         Employer::factory(100)->create();
         JobListing::factory(1000)->create();
 

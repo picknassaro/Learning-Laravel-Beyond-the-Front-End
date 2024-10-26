@@ -18,8 +18,8 @@ class JobListingController extends Controller
         return view('pages.jobs.index', [
             'jobs' => $jobs
         ]);
-        // ↑↑ with('employer') is not for allowing us to show the employers. That will work regardless.
-        // It is an eager loading method that prevent an N+1 query problem. It will load all the employers in one query instead of loading them one by one.
+        // ↑↑ with('employer') is not for allowing us to show the employers. That will work regardless because the JobListing Model has an Eloquent relationship with the Employers Model.
+        // with('employer') is an eager loading method that prevent an N+1 query problem. It will load all the employers in one query instead of loading them one by one.
     }
 
     /**
