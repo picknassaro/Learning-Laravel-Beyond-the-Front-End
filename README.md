@@ -1,3 +1,5 @@
+<p>After learning Laravel Blade for front-end component driven development while working as a front end developer for Publishers Clearing House, I deceided that I should expand upon that knowledge in my free time. This project is a very simple job board demo application, meant for demonstrating the fundamentals of full-stack development in Laravel.</p>
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
